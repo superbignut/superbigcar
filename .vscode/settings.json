@@ -9,7 +9,11 @@
     "idf.port": "/dev/ttyUSB0",
     "files.associations": {
         "sdkconfig.h": "c",
-        "led.h": "c"
+        "led.h": "c",
+        "inttypes.h": "c",
+        "task.h": "c",
+        "esp_log.h": "c",
+        "freertos.h": "c"
     },
     "cmake.environment": {
         "IDF_PATH": "/home/superbigcar/esp/esp-idf"
