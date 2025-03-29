@@ -29,27 +29,11 @@ void app_main(void)
     }
 
     led_init_ltl();
-    key_init_ltl();
-
-    uint8_t key = 1;
+    // key_init_ltl();
 
     while(1)
-    {   
-        key = key_scan_ltl();
-        switch (key)
-        {
-            case BUTTON_PRESS:
-            {
-                ESP_LOGI(TAG, "Led is toggled...");
-                LED_SWITCH();    
-                break;
-            }
-            
-            default:
-                break;
-        }
-        
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+    {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     
 }

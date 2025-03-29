@@ -21,7 +21,7 @@
 #define GET_BOOT_STATE  gpio_get_level(BOOT_GPIO_PIN)   /** Get boot-bottom state */
 
 /** @enum
- * @brief 
+ * @brief Two state of button.
  * 
  */
 enum BOOT_BUTTON_STATE
