@@ -32,3 +32,13 @@
         }
 
     ```
+
+    Instead, Use Makefile is more comfortable...
+
+
++ I don't know why include follows into KEY.h will cause error when build, but moving to KEY.c is no error.
+    
+```cpp
+    #include "freertos/FreeRTOS.h"
+    #include "freertos/task.h"
+```

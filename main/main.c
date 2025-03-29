@@ -11,6 +11,7 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "LED.h"
+#include "KEY.h"
 
 static const char *TAG = "Example";
 
@@ -28,13 +29,27 @@ void app_main(void)
     }
 
     led_init_ltl();
+    key_init_ltl();
 
-    
+    uint8_t key = 1;
+
     while(1)
-    {
-        ESP_LOGI(TAG, "Led is toggled...");
-        LED_SWITCH();
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    {   
+        key = key_scan_ltl();
+        switch (key)
+        {
+            case BUTTON_PRESS:
+            {
+                ESP_LOGI(TAG, "Led is toggled...");
+                LED_SWITCH();    
+                break;
+            }
+            
+            default:
+                break;
+        }
+        
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
     
 }

@@ -15,23 +15,23 @@
 
 
 #include "driver/gpio.h"
-#include "freertos/task.h"
-#include "freertos/FreeRTOS.h"
-
-
 
 #define BOOT_GPIO_PIN GPIO_NUM_0    /**> BOOT BOTTOM in esp32-wroom32 */
 
 #define GET_BOOT_STATE  gpio_get_level(BOOT_GPIO_PIN)   /** Get boot-bottom state */
 
-enum BOOT_BOTTOM_STATE
+/** @enum
+ * @brief 
+ * 
+ */
+enum BOOT_BUTTON_STATE
 {
-    BOOT_RELEASE = 0,
-    BOOT_PRESS = 1,
+    BUTTON_RELEASE,
+    BUTTON_PRESS,
 };
 
-void key_init();
+void key_init_ltl(void);
 
-void key_scan(uint8_t mode);
+uint8_t key_scan_ltl(void);
 
 #endif
