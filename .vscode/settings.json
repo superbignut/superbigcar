@@ -13,7 +13,9 @@
         "inttypes.h": "c",
         "task.h": "c",
         "esp_log.h": "c",
-        "freertos.h": "c"
+        "freertos.h": "c",
+        "stdio.h": "c",
+        "nvs_flash.h": "c"
     },
     "cmake.environment": {
         "IDF_PATH": "/home/superbigcar/esp/esp-idf"

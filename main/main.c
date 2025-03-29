@@ -9,6 +9,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
+#include "nvs_flash.h"
 #include "LED.h"
 
 static const char *TAG = "Example";
@@ -16,11 +17,24 @@ static const char *TAG = "Example";
 
 void app_main(void)
 {   
+
+    esp_err_t ret;
+
+    ret = nvs_flash_init();
+    if(ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
+    {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+
+    led_init_ltl();
+
     
     while(1)
     {
-        ESP_LOGI(TAG, "this is a test num: %d", ltl_add(1, 2));
-        vTaskDelay(10);
+        ESP_LOGI(TAG, "Led is toggled...");
+        LED_SWITCH();
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     
 }
