@@ -12,8 +12,10 @@
 #include "nvs_flash.h"
 #include "LED.h"
 #include "KEY.h"
+#include "MOTOR.h"
+//#include "driver/ledc.h"
 
-static const char *TAG = "Example";
+// static const char *TAG = "Example";
 
 
 void app_main(void)
@@ -21,7 +23,7 @@ void app_main(void)
 
     esp_err_t ret;
 
-    ret = nvs_flash_init();
+    ret = nvs_flash_init(); 
     if(ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
     {
         ESP_ERROR_CHECK(nvs_flash_erase());
@@ -30,10 +32,16 @@ void app_main(void)
 
     led_init_ltl();
     // key_init_ltl();
-
+    ledc_init();
+    int i = 0;
+    
     while(1)
     {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        
+        ledc_pwm(i * 1.0 / 100);
+        
+        i = (i+1) % 100;
     }
     
 }
