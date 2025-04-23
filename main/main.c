@@ -32,16 +32,13 @@ void app_main(void)
 
     led_init_ltl();
     // key_init_ltl();
-    ledc_init();
-    int i = 0;
+    pwm_init();
+
+    motor_control(1, 0.0);
     
     while(1)
     {
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        
-        ledc_pwm(i * 1.0 / 100);
-        
-        i = (i+1) % 100;
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     
 }

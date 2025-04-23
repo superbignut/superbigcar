@@ -25,5 +25,6 @@
     "cmake.environment": {
         "IDF_PATH": "/home/superbigcar/esp/esp-idf"
     },
-    "idf.flashType": "UART"
+    "idf.flashType": "UART",
+    "idf.pythonInstallPath": "/home/bignut/.espressif/python_env/idf5.4_py3.12_env/bin/python"
 }

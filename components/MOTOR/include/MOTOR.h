@@ -17,16 +17,8 @@
 
 #include "stdio.h"
 
-#define ltl_left_motor_pwm_out1 (21)
-#define ltl_left_motor_pwm_out2 (22)
+void pwm_init();
 
-#define ltl_right_motor_pwm_out1 (19)
-#define ltl_right_motor_pwm_out2 (28)
-
-#define PWM 
-
-void ledc_init();
-
-void ledc_pwm(double duty_percent);
+void motor_control(int speed_mm_s, double angle_arc);
 
 #endif
