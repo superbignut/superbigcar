@@ -32,7 +32,7 @@ void app_main(void)
 
     led_init_ltl();
     // key_init_ltl();
-    pwm_init();
+    motor_init();
 
     motor_control(1, 0.0);
     

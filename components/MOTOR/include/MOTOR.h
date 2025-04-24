@@ -17,7 +17,7 @@
 
 #include "stdio.h"
 
-void pwm_init();
+void motor_init();
 
 void motor_control(int speed_mm_s, double angle_arc);
 
