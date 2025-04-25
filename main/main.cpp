@@ -13,12 +13,20 @@
 #include "LED.h"
 #include "KEY.h"
 #include "MOTOR.h"
+#include "driver/i2c.h"
+#include "esp_err.h"
+// #include "MPU6050.h"
+// p#include "MPU6050_6Axis_MotionApps20.h"
+#include "sdkconfig.h"
+#include "I2Cdev.h"
 //#include "driver/ledc.h"
 
 // static const char *TAG = "Example";
 
+extern void mpu_tmp();
 
-void app_main(void)
+
+extern "C" void app_main(void)
 {   
 
     esp_err_t ret;
@@ -30,15 +38,13 @@ void app_main(void)
         ret = nvs_flash_init();
     }
 
-    led_init_ltl();
-    // key_init_ltl();
-    motor_init();
+    // I2Cdev tmp;
 
-    motor_control(1, 0.0);
+    mpu_tmp();
     
     while(1)
     {
         vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
+    } 
     
 }

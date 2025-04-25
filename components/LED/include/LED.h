@@ -13,6 +13,11 @@
 
 #include "driver/gpio.h"
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define LED_GPIO_LTL GPIO_NUM_5 /**> led gpio in esp-wroom-32 */
 
 /** @enum
@@ -42,5 +47,8 @@ enum GPIO_OUTPUT_STATE
 
 void led_init_ltl();
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

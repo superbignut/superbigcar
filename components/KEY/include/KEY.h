@@ -13,8 +13,12 @@
 #ifndef __LTL_KEY__
 #define __LTL_KEY__
 
-
 #include "driver/gpio.h"
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define BOOT_GPIO_PIN GPIO_NUM_0    /**> BOOT BOTTOM in esp32-wroom32 */
 
@@ -33,5 +37,9 @@ enum BOOT_BUTTON_STATE
 void key_init_ltl(void);
 
 uint8_t key_scan_ltl(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

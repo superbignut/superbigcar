@@ -23,7 +23,10 @@
         "ledc.h": "c",
         "esp_sleep.h": "c",
         "compare": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "mpu6050_6axis_motionapps20.h": "c",
+        "mpu6050.h": "c",
+        "i2cdev.h": "c"
     },
     "cmake.environment": {
         "IDF_PATH": "/home/superbigcar/esp/esp-idf"

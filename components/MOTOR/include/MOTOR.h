@@ -17,8 +17,18 @@
 
 #include "stdio.h"
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void motor_init();
 
 void motor_control(int speed_mm_s, double angle_arc);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
