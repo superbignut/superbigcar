@@ -1,9 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2010-2022 Espressif Systems (Shanghai) CO LTD
- *
- * SPDX-License-Identifier: CC0-1.0
- */
-
 #include <stdio.h>
 #include <inttypes.h>
 #include "freertos/FreeRTOS.h"
@@ -15,16 +9,14 @@
 #include "MOTOR.h"
 #include "driver/i2c.h"
 #include "esp_err.h"
-// #include "MPU6050.h"
-// p#include "MPU6050_6Axis_MotionApps20.h"
 #include "sdkconfig.h"
 #include "I2Cdev.h"
-//#include "driver/ledc.h"
+#include "mpu.h"
+#include "esp_log.h"
 
-// static const char *TAG = "Example";
+static const char *TAG = "Example";
 
-extern void mpu_tmp();
-
+static float mpu_buffer[6];
 
 extern "C" void app_main(void)
 {   
@@ -38,13 +30,21 @@ extern "C" void app_main(void)
         ret = nvs_flash_init();
     }
 
-    // I2Cdev tmp;
 
-    mpu_tmp();
-    
+    mpu_6050_lnlt();
+
     while(1)
     {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+
+        mpu_get_aw(&mpu_buffer[0], &mpu_buffer[1], &mpu_buffer[2], &mpu_buffer[3], &mpu_buffer[4], &mpu_buffer[5]);
+        ESP_LOGI(TAG,"%2.1f, %2.1f, %2.1f, %2.1f, %2.1f, %2.1f",
+                    mpu_buffer[0],   \
+                    mpu_buffer[1],   \
+                    mpu_buffer[2],   \
+                    mpu_buffer[3],   \
+                    mpu_buffer[4],   \
+                    mpu_buffer[5]); 
     } 
     
 }

@@ -1,6 +1,6 @@
 # export PATH := $(PATH):$(HOME)/esp/esp-idf/
 
-.PHONY: build flash monit clean config
+.PHONY: build flash monit clean config 
 
 
 TARGET = esp32
