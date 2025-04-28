@@ -13,10 +13,9 @@
 #include "I2Cdev.h"
 #include "mpu.h"
 #include "esp_log.h"
+#include "LD14.h"
 
 static const char *TAG = "Example";
-
-static float mpu_buffer[6];
 
 extern "C" void app_main(void)
 {   
@@ -30,21 +29,11 @@ extern "C" void app_main(void)
         ret = nvs_flash_init();
     }
 
-
-    mpu_6050_lnlt();
+    LD14_lnlt();
 
     while(1)
     {
         vTaskDelay(200 / portTICK_PERIOD_MS);
-
-        mpu_get_aw(&mpu_buffer[0], &mpu_buffer[1], &mpu_buffer[2], &mpu_buffer[3], &mpu_buffer[4], &mpu_buffer[5]);
-        ESP_LOGI(TAG,"%2.1f, %2.1f, %2.1f, %2.1f, %2.1f, %2.1f",
-                    mpu_buffer[0],   \
-                    mpu_buffer[1],   \
-                    mpu_buffer[2],   \
-                    mpu_buffer[3],   \
-                    mpu_buffer[4],   \
-                    mpu_buffer[5]); 
     } 
     
 }
