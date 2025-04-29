@@ -14,6 +14,7 @@
 #include "mpu.h"
 #include "esp_log.h"
 #include "LD14.h"
+#include "WLFL.h"
 
 static const char *TAG = "Example";
 
@@ -29,7 +30,9 @@ extern "C" void app_main(void)
         ret = nvs_flash_init();
     }
 
-    LD14_lnlt();
+    // LD14_lnlt();
+
+    wifi_init_sta();
 
     while(1)
     {
