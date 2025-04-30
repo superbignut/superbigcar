@@ -83,7 +83,7 @@ static void wlfl_event_handler(void* arg, esp_event_base_t event_base,
 
 /// @brief WLFL init function. Register EventGroup, Register Handler, WLFL start, and Check WLFL connection.
 /// @param  
-void wifi_init_sta(void)
+void wlfl_init_sta(void)
 {
     s_wifi_event_group = xEventGroupCreate();               // EventGroup
 
@@ -134,14 +134,69 @@ void wifi_init_sta(void)
 
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
      * happened. */
-    if (bits & WIFI_CONNECTED_BIT) {
+    if (bits & WIFI_CONNECTED_BIT) 
+    {
         ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
                  EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
-    } else if (bits & WIFI_FAIL_BIT) {
+    } 
+    else if (bits & WIFI_FAIL_BIT) 
+    {
         ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
                  EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
-    } else {
+    } 
+    else 
+    {
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }
 }
 
+
+/// @brief addr[4] represent (127.0.0.1).split('.')
+/// @param addr 
+void get_ip_address_uint16(uint16_t *addr)
+{
+    esp_netif_ip_info_t ip_info;
+
+    esp_netif_t *netif = esp_netif_get_default_netif();
+
+    if(esp_netif_get_ip_info(netif, &ip_info) == ESP_OK)
+    {
+        addr[0] = esp_ip4_addr1_16(&ip_info.ip);
+        addr[1] = esp_ip4_addr2_16(&ip_info.ip);
+        addr[2] = esp_ip4_addr3_16(&ip_info.ip);
+        addr[3] = esp_ip4_addr4_16(&ip_info.ip);
+
+        /*         ESP_LOGI("GOT ", "IP Address:" IPSTR, IP2STR(&ip_info.ip));
+        ESP_LOGI("GOT ", "Subnet Mask:" IPSTR, IP2STR(&ip_info.netmask));
+        ESP_LOGI("GOT ", "Gateway Address:" IPSTR, IP2STR(&ip_info.gw));
+        
+        char tmp_addr[16];
+
+        printf("this method is: %s\n ", esp_ip4addr_ntoa(&ip_info.ip, tmp_addr, sizeof(tmp_addr))); */
+    }
+    else
+    {
+        ESP_LOGI("Error ", "Failed to get ip addr.");
+    }
+}
+
+/// @brief Return str of ipaddr.
+/// @param addr 
+/// @param len 
+void get_ip_address_str(char *addr, int len)
+{
+    esp_netif_ip_info_t ip_info;
+
+    esp_netif_t *netif = esp_netif_get_default_netif();
+
+    if(esp_netif_get_ip_info(netif, &ip_info) == ESP_OK)
+    {
+
+        esp_ip4addr_ntoa(&ip_info.ip, addr, len);
+        // snprintf(ip_str, sizeof(ip_str), IPSTR, IP2STR(&ip_info.ip));
+    }
+    else
+    {
+        ESP_LOGI("Error ", "Failed to get ip addr.");
+    }
+}

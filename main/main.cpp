@@ -15,6 +15,8 @@
 #include "esp_log.h"
 #include "LD14.h"
 #include "WLFL.h"
+#include "string.h"
+#include "SOCKET.h"
 
 static const char *TAG = "Example";
 
@@ -32,11 +34,22 @@ extern "C" void app_main(void)
 
     // LD14_lnlt();
 
-    wifi_init_sta();
+    wlfl_init_sta();
+    
+    server_task();
 
     while(1)
     {
-        vTaskDelay(200 / portTICK_PERIOD_MS);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+
+        // get_ip_address_uint16(ip_addr);
+
+        // printf("%d, %d, %d, %d\n", ip_addr[0], ip_addr[1], ip_addr[2], ip_addr[3]);
+
+        // get_ip_address_str(ip_str, 16);
+
+        // printf("%s, %d\n", ip_str, strlen(ip_str));
+
     } 
     
 }

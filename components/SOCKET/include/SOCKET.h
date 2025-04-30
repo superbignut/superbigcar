@@ -1,5 +1,5 @@
 /**
- * @file LD14.h
+ * @file SOCKET.h
  * @author bignut
  * @brief 
  * @details
@@ -9,8 +9,8 @@
  * @copyright Copyright (c) 2025
  * 
  */
-#ifndef __LTL_WLFL__
-#define __LTL_WLFL__
+#ifndef __LTL_SOCK__
+#define __LTL_SOCK__
 
 #include "stdio.h"
 
@@ -19,11 +19,9 @@
 extern "C" {
 #endif
 
-void wlfl_init_sta(void);
+void client_task();
 
-void get_ip_address_uint16(uint16_t *addr);
-
-void get_ip_address_str(char *addr, int len);
+void server_task();
 
 #ifdef __cplusplus
 }
