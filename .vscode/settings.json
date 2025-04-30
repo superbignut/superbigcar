@@ -31,7 +31,9 @@
         "string.h": "c",
         "sys.h": "c",
         "esp_wifi_types.h": "c",
-        "esp_event.h": "c"
+        "esp_event.h": "c",
+        "text_encoding": "c",
+        "thread": "c"
     },
     "cmake.environment": {
         "IDF_PATH": "/home/superbigcar/esp/esp-idf"
